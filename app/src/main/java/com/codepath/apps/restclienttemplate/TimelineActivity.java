@@ -68,6 +68,8 @@ public class TimelineActivity extends AppCompatActivity {
             //this means the compose icon is tapped
             //navigate to compose activity
             Toast.makeText(this,"toast",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ComposeActivity.class);
+            startActivity(intent);
             return true;
 
         }
