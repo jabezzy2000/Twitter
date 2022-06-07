@@ -12,7 +12,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     EditText multiLine;
     Button button;
-    publc static final int Max_Tweet_Length = 140;
+    public static final int Max_Tweet_Length = 140;
     public static final String TAG = "ComposeActivity"; //why isnt this necessary?
 
 
