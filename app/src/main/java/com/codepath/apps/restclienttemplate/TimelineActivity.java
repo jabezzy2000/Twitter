@@ -38,7 +38,7 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
-         client = TwitterApp.getRestClient(this);
+         client = TwitterApp.getRestClient(TimelineActivity.this);
          rvTweets = findViewById(R.id.rvTweets); //finding recycler view by ID
         button = findViewById(R.id.logout);
         tweets = new ArrayList<>();

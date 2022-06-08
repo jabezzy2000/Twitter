@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.room.Room;
 
@@ -31,7 +32,7 @@ public class TwitterApp extends Application {
         Stetho.initializeWithDefaults(this);
     }
 
-    public static TwitterClient getRestClient(TimelineActivity context) {
+    public static TwitterClient getRestClient(Context context) {
         return (TwitterClient) TwitterClient.getInstance(TwitterClient.class, context);
     }
 

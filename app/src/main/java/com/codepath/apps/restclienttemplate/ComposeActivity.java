@@ -3,17 +3,28 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+
+import java.util.List;
+
+import okhttp3.Headers;
 
 public class ComposeActivity extends AppCompatActivity {
 
     EditText multiLine;
     Button button;
     public static final int Max_Tweet_Length = 140;
-    public static final String TAG = "ComposeActivity"; //why isnt this necessary?
+    TwitterClient client;
+    public static final String TAG = "ComposeActivity";
 
 
 
@@ -24,6 +35,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         multiLine = findViewById(R.id.tvMultiLine);
         button = findViewById(R.id.composebutton);
+        client = TwitterApp.getRestClient(this);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,13 +43,32 @@ public class ComposeActivity extends AppCompatActivity {
                 String tweetcontent = multiLine.getText().toString();
                 if(tweetcontent.isEmpty()) {
                     Toast.makeText(ComposeActivity.this,"Empty tweet", Toast.LENGTH_SHORT).show();
-                    return; //why is this returning early?
+                    return; //these return statements are put in so that if this block of code runs, it will break over here
+                    //(return statements exit loops)
                 }
                 if(tweetcontent.length() > Max_Tweet_Length) {
                     Toast.makeText(ComposeActivity.this,"Error: Tweet exceeds 140 characters", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Toast.makeText(ComposeActivity.this,tweetcontent, Toast.LENGTH_SHORT).show();
+                client.publishtweet(tweetcontent, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        Log.i(TAG, "onSuccess: Successfully published");
+                        try {
+                            Tweet tweet = Tweet.fromJson(json.jsonObject);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                        Log.e(TAG, "onFailure: failure to publish tweet", throwable );
+
+                    }
+                });
             }
 
             });
