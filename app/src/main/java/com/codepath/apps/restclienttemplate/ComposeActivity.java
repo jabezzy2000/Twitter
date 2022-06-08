@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONException;
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -57,6 +59,10 @@ public class ComposeActivity extends AppCompatActivity {
                         Log.i(TAG, "onSuccess: Successfully published");
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            Intent intent = new Intent(); //creating intent to pass back data to Parent activity (Timeline Activity)
+                            intent.putExtra("tweet", Parcels.wrap(tweet));
+                            setResult(RESULT_OK,intent);
+                            finish(); // finish closes the activity and sends the data back to parent activity
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

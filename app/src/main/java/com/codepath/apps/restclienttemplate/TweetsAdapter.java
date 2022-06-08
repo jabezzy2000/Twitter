@@ -46,6 +46,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     //bind values based on the position of the element
     //define a viewholder
 
+    //creating a method to clear current data (tweets) from array
+    public void cleardata() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    //creating a method to load new data (tweets) into array
+    public void refreshdata() {
+        tweets.addAll(tweets);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivProfileImage;
         TextView tvBody;

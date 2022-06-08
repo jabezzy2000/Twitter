@@ -4,24 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ComposeActivity">
+    android:layout_height="wrap_content"
+    tools:context=".ComposeActivity"
+ >
 
-    <EditText
-        android:id="@+id/tvMultiLine"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="What's up?"
-        android:inputType="textMultiLine"
-        android:minLines="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+     >
+        <EditText
+            android:id="@+id/tvMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+
+            android:hint="What's up?"
+            android:inputType="textMultiLine"
+            android:minLines="5"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/composebutton"
@@ -36,3 +42,10 @@
         tools:layout_editor_absoluteX="222dp"
         tools:layout_editor_absoluteY="353dp" />
 </RelativeLayout>
+
+<!--    app:counterEnabled="true"-->
+<!--    app:counterMaxLength="170"-->
+
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->

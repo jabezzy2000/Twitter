@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/compose"
-        android:icon="@android:drawable/edit_text"
+        android:icon="@drawable/tweetbutton"
         android:title="Item"
         app:showAsAction="always" />
 </menu>
