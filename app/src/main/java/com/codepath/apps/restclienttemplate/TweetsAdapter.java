@@ -10,12 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
-
-import okhttp3.internal.Util;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
     Context context;
@@ -65,12 +62,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         ImageView TweetImage;
+        TextView tvUsername; // did this
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage= itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             TweetImage = itemView.findViewById(R.id.TweetImage);
+            tvUsername = itemView.findViewById((R.id.tvName)); //did this
         }
 
 
@@ -78,8 +77,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+            tvUsername.setText(tweet.user.name); // did this
 //            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-            Utilities.setImage(context,tweet.user.profileImageUrl,ivProfileImage);
+           Utilities.roundedImage(context,tweet.user.profileImageUrl,ivProfileImage,60); //Using method defined in Utilities
             if(tweet.imageurl!= null) {
                 TweetImage.setVisibility(View.VISIBLE);
 //                Glide.with(context).load(tweet.imageurl).into(TweetImage);
