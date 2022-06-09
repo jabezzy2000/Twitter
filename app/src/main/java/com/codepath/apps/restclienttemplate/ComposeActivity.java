@@ -21,25 +21,25 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class ComposeActivity extends AppCompatActivity {
-
+    //creating variables to be tied with xml items
     EditText multiLine;
     Button button;
     public static final int Max_Tweet_Length = 140;
     TwitterClient client;
     public static final String TAG = "ComposeActivity";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose);
+        setContentView(R.layout.activity_compose); //setting content view to activity compose layout/xml
 
+        //tying the variables created above with the actual xml items
         multiLine = findViewById(R.id.tvMultiLine);
         button = findViewById(R.id.composebutton);
         client = TwitterApp.getRestClient(this);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() { //implementing an onclick listener to have something done whenever the button is clicked
+            //whenever the button ( compose button in this case) is clicked,
             @Override
             public void onClick(View v) {
                 String tweetcontent = multiLine.getText().toString();
@@ -66,17 +66,13 @@ public class ComposeActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-
                     @Override
                     public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                         Log.e(TAG, "onFailure: failure to publish tweet", throwable );
-
                     }
                 });
             }
-
             });
     }
 }

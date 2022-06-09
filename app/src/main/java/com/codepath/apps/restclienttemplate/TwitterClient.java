@@ -43,7 +43,7 @@ public class TwitterClient extends OAuthBaseClient {
 						context.getString(R.string.intent_scheme), context.getPackageName(), FALLBACK_URL));
 	}
 
-	// MEethods for different API endpoints
+	// defining method to retrieve the home timeline
 	public void getHomeTimeline(JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		//Specifying query string params via RequestParams.

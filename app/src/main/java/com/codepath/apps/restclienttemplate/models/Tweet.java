@@ -24,16 +24,16 @@ public class Tweet {
         //hence creating an if/else block to handle that
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+//        tweet.user = jsonObject.getJSONObject("entities").getJSONArray("user_mentions").getString(1); -- difficulty extracting name
 //        tweet.username = jsonObject.getJSONObject("entities").getJSONArray("user_mentions").getString(1);
-//
+
         if(jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString(("full_text"));
         }
         else {
             tweet.body = jsonObject.getString("text");
         }
-        //if the tweet has extras, It'll probably be in entities object
-        //hence we want to get the image from the entities Object
+        //if the tweet has extras, It'll be in entities obj. hence we want to get the image from the entities Object
         if(jsonObject.getJSONObject("entities").has("media")){
             tweet.imageurl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
         }
@@ -52,7 +52,8 @@ public class Tweet {
         return tweets;
     }
 }
-//jsonArray=[{"created_at":"Wed Jun 08 23:55:04 +0000 2022","id":1534685474731589632,
+//jsonArray=[{
+// "created_at":"Wed Jun 08 23:55:04 +0000 2022","id":1534685474731589632,
 // "id_str":"1534685474731589632",
 // "full_text":"RT @SpaceX: Falcon 9 launches the Nilesat 301 communications satellite to a geosynchronous transfer orbit from Florida https:\/\/t.co\/HidKNqR…"
 // ,"truncated":false,
