@@ -15,6 +15,8 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
 
+import okhttp3.internal.Util;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
     Context context;
     List<Tweet> tweets;
@@ -71,13 +73,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             TweetImage = itemView.findViewById(R.id.TweetImage);
         }
 
+
+
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+//            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Utilities.setImage(context,tweet.user.profileImageUrl,ivProfileImage);
             if(tweet.imageurl!= null) {
                 TweetImage.setVisibility(View.VISIBLE);
-                Glide.with(context).load(tweet.imageurl).into(TweetImage);
+//                Glide.with(context).load(tweet.imageurl).into(TweetImage);
+                Utilities.setImage(context, tweet.imageurl, TweetImage);
             }
             else {
                 TweetImage.setVisibility(View.GONE);

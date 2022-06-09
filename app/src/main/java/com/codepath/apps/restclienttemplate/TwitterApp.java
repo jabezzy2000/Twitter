@@ -2,9 +2,11 @@ package com.codepath.apps.restclienttemplate;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.ImageView;
 
 import androidx.room.Room;
 
+import com.bumptech.glide.Glide;
 import com.facebook.stetho.Stetho;
 
 /*
