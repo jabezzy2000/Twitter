@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="10"
-     >
+        app:counterMaxLength="280">
+
         <EditText
             android:id="@+id/tvMultiLine"
             android:layout_width="match_parent"
@@ -27,20 +27,18 @@
             android:inputType="textMultiLine"
             android:minLines="5"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/composebutton"
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="5dp"
+            android:text="Tweet"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="222dp"
+            tools:layout_editor_absoluteY="353dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/composebutton"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/tvMultiLine"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:text="Tweet"
-        android:textStyle="italic"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="353dp" />
 </RelativeLayout>
 
 <!--    app:counterEnabled="true"-->

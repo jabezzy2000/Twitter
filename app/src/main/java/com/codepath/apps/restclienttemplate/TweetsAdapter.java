@@ -21,7 +21,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         this.context = context;
         this.tweets = tweets;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,17 +32,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Tweet tweet= tweets.get(position);
         holder.bind(tweet);
-
     }
-
     @Override
     public int getItemCount() {
         return tweets.size();
-    }
-    //pass in the context and list of tweets
-    //for each row, inflate the layout
-    //bind values based on the position of the element
-    //define a viewholder
+    } //returns item count
 
     //creating a method to clear current data (tweets) from array
     public void cleardata() {
@@ -63,13 +56,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         ImageView TweetImage;
         TextView tvUsername; // did this
+        TextView tvtime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage= itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             TweetImage = itemView.findViewById(R.id.TweetImage);
-            tvUsername = itemView.findViewById((R.id.tvName)); //did this
+            tvUsername = itemView.findViewById((R.id.tvName));
+            tvtime = itemView.findViewById(R.id.tvtime);
         }
 
 
@@ -77,18 +72,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
-            tvUsername.setText(tweet.user.username); // did this
-//            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            tvtime.setText(Utilities.getsimpletime(tweet.createdAt));
+            tvUsername.setText(tweet.user.username);
            Utilities.roundedImage(context,tweet.user.profileImageUrl,ivProfileImage,60); //Using method defined in Utilities
             if(tweet.imageurl!= null) {
                 TweetImage.setVisibility(View.VISIBLE);
-//                Glide.with(context).load(tweet.imageurl).into(TweetImage);
                 Utilities.setImage(context, tweet.imageurl, TweetImage);
             }
             else {
                 TweetImage.setVisibility(View.GONE);
             }
-
         }
     }
 }

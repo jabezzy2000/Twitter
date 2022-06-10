@@ -9,7 +9,8 @@ public class User {
     public String name;
     public String screenName;
     public String profileImageUrl;
-    public String username; // did this
+    public String username;
+    public String time;
 
     public User(){}; // empty constructor required by parcel
 
@@ -18,7 +19,9 @@ public class User {
         user.username = jsonObject.getString("name");
         user.screenName = "@" + jsonObject.getString("screen_name");
         user.profileImageUrl = jsonObject.getString(("profile_image_url_https"));
-//        user.username = jsonObject.getString("screen_name"); // did this
+
+
+
         return user;
 
     }

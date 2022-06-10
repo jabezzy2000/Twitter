@@ -15,18 +15,15 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String imageurl;
-    public String username; // did this
-    public Tweet(){}; //empty constructor required by parceler
+    public String username;
 
+    public Tweet(){}; //empty constructor required by parceler
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-        //If the tweet is long, Twitter automatically truncates the tweet so we want to get the full thing instead of the shortened version
-        //hence creating an if/else block to handle that
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-//        tweet.user = jsonObject.getJSONObject("entities").getJSONArray("user_mentions").getString(1); -- difficulty extracting name
-//        tweet.username = jsonObject.getJSONObject("entities").getJSONArray("user_mentions").getString(1);
 
+        //Checking whether twitter has truncated the message and returning the full message if it has been cut short
         if(jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString(("full_text"));
         }
@@ -41,9 +38,7 @@ public class Tweet {
             jsonObject.getJSONObject("entities");
         }
         return tweet;
-
     }
-
     public static List<Tweet> fromJsonArray(JSONArray jsonArray) throws JSONException{
         List<Tweet> tweets = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
