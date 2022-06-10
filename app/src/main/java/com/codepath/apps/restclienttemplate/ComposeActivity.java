@@ -16,7 +16,6 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.parceler.Parcels;
 
-import java.util.List;
 
 import okhttp3.Headers;
 

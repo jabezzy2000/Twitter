@@ -5,6 +5,7 @@
     <item
         android:id="@+id/compose"
         android:icon="@drawable/tweetbutton"
-        android:title="Item"
+        android:title="@string/item"
         app:showAsAction="always" />
+
 </menu>

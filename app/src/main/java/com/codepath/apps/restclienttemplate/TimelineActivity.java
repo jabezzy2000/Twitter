@@ -105,6 +105,10 @@ public class TimelineActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+//      private void populateHomeTimeLine() {
+//        client.getHomeTimeline(new Utilities.JSONHandlerVariable);
+//      } --- ask Omar why this doesnt work
+
 
     private void populateHomeTimeLine() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
