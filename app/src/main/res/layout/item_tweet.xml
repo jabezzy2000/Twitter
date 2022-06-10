@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="49dp"
+        android:layout_height="39dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         tools:layout_editor_absoluteX="5dp"
@@ -18,18 +18,16 @@
 
     <ImageView
         android:id="@+id/TweetImage"
-        android:layout_width="397dp"
-        android:layout_height="135dp"
+        android:layout_width="402dp"
+        android:layout_height="142dp"
         android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBody"
-        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -81,4 +79,18 @@
         app:layout_constraintBottom_toTopOf="@+id/tvBody"
         app:layout_constraintStart_toEndOf="@+id/tvScreenName"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--<ImageView-->
+<!--android:id="@+id/ivTweetImage"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@+id/tvBody"-->
+<!--android:layout_alignStart="@+id/tvBody"-->
+<!--android:layout_alignEnd="@+id/tvBody"-->
+<!--android:layout_marginStart="5dp"-->
+<!--android:layout_marginTop="5dp"-->
+<!--android:layout_marginEnd="5dp"-->
+<!--tools:srcCompat="@tools:sample/avatars" />-->
