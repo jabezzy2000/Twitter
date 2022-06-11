@@ -38,7 +38,7 @@ public class Utilities {
     } // method to setImage with rounded corners
 
     //method to get the date/time of a tweet in friendly format
-    public static String getsimpletime(String rawJsonDate) {
+    public static String getSimpleTime(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
         sf.setLenient(true);
@@ -71,29 +71,5 @@ public class Utilities {
         return "";
     }
 
-
-//    JsonHttpResponseHandler JSONHandlerVariable = new JsonHttpResponseHandler() {
-//        @Override
-//        public void onSuccess(int statusCode, Headers headers, JsonHttpResponseHandler.JSON json) {
-//            Log.i("TAG", "onSuccess: Success " + json.toString());
-//            JSONArray jsonArray = json.jsonArray;
-//            try {
-//                tweets.addAll(Tweet.fromJsonArray(jsonArray));
-//                adapter.notifyDataSetChanged();
-//            } catch (JSONException e) {
-//                Log.e("TAG", "Json exception",e );
-//                e.printStackTrace();
-//            }
-//
-//
-//        }
-//
-//        @Override
-//        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-//            Log.e("TAG", "onFailure: here" + response, throwable );
-////                loge + response as in above shows the reason why youre having an error..good for debugging
-//
-//        } // ask why this doesnt work
-//    };
 }
 

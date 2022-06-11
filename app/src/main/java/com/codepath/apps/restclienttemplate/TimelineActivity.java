@@ -22,7 +22,6 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     Button button;
     public static final String TAG = "TimeLineActivity";
-    private final int REQUEST_CODE = 20;
+    public static final int REQUEST_CODE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +104,6 @@ public class TimelineActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-//      private void populateHomeTimeLine() {
-//        client.getHomeTimeline(new Utilities.JSONHandlerVariable);
-//      } --- ask Omar why this doesnt work
-
 
     private void populateHomeTimeLine() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {

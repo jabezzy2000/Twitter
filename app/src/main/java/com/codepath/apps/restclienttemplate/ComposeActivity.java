@@ -26,6 +26,27 @@ public class ComposeActivity extends AppCompatActivity {
     public static final int Max_Tweet_Length = 140;
     TwitterClient client;
     public static final String TAG = "ComposeActivity";
+    JsonHttpResponseHandler responseHandler= new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Headers headers, JsonHttpResponseHandler.JSON
+        json) {
+            Log.i(TAG, "onSuccess: Successfully published");
+            try {
+                Tweet tweet = Tweet.fromJson(json.jsonObject);
+                Intent intent = new Intent(); //creating intent to pass back data to Parent activity (Timeline Activity)
+                intent.putExtra("tweet", Parcels.wrap(tweet));
+                setResult(RESULT_OK, intent);
+                finish(); // finish closes the activity and sends the data back to parent activity
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+            Log.e(TAG, "onFailure: failure to publish tweet" + response, throwable);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,25 +73,18 @@ public class ComposeActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(ComposeActivity.this,tweetcontent, Toast.LENGTH_SHORT).show();
-                client.publishtweet(tweetcontent, new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Headers headers, JSON json) {
-                        Log.i(TAG, "onSuccess: Successfully published");
-                        try {
-                            Tweet tweet = Tweet.fromJson(json.jsonObject);
-                            Intent intent = new Intent(); //creating intent to pass back data to Parent activity (Timeline Activity)
-                            intent.putExtra("tweet", Parcels.wrap(tweet));
-                            setResult(RESULT_OK,intent);
-                            finish(); // finish closes the activity and sends the data back to parent activity
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    @Override
-                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                        Log.e(TAG, "onFailure: failure to publish tweet", throwable );
-                    }
-                });
+                //client.publishtweet(tweetcontent, responseHandler);
+
+                if(getIntent().hasExtra("tweet_to_reply_to")) {
+                    Tweet tweetToReplyTo = Parcels.unwrap(getIntent().getParcelableExtra("tweet_to_reply_to"));
+                    String idOfTweetToReplyTo = tweetToReplyTo.id;
+                    String screenName = tweetToReplyTo.user.screenName;
+                    client.replyTweet(idOfTweetToReplyTo,screenName + " "+ tweetcontent, responseHandler);
+
+                }
+                else {
+                    client.publishtweet(tweetcontent, responseHandler);
+                }
             }
             });
     }

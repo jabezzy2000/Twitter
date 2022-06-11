@@ -16,12 +16,15 @@ public class Tweet {
     public User user;
     public String imageurl;
     public String username;
+    public String id;
+
 
     public Tweet(){}; //empty constructor required by parceler
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.id = jsonObject.getString("id_str");
 
         //Checking whether twitter has truncated the message and returning the full message if it has been cut short
         if(jsonObject.has("full_text")) {
@@ -36,6 +39,7 @@ public class Tweet {
         }
         else {
             jsonObject.getJSONObject("entities");
+
         }
         return tweet;
     }
