@@ -48,7 +48,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 <!-- <img src='[http://i.imgur.com/link/to/your/gif/file.gif](https://imgur.com/iDL7YjS)' title='Video Walkthrough' width=250 alt='Video Walkthrough' /> -->
-<img src="https://imgur.com/jt0QxQv", width=250 />
+![](https://github.com/jabezzy2000/Twitter/blob/master/lower%20rate%20gif.gif)
 GIF created with [Kap](https://getkap.co/).
 
 ## Notes
